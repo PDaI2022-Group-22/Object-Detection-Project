@@ -11,6 +11,8 @@ class GridLayoutExample(GridLayout):
 
 
 class BoxLayoutExample(BoxLayout):
+    def AA(self):
+        import RockPaperScissors
     def DD(self):
         import TasteOfGame
     def EE(self):
