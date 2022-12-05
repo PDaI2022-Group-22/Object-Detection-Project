@@ -1,34 +1,52 @@
 import cv2
 import utils
 
-webcam = False
-path = "IMG_20221128_174604.jpg"
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_BRIGHTNESS,160)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH,1920)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1080)
-scaleResize = 40
-scaleF = 3
-widthP = 210 * scaleF
-heightP = 297 * scaleF
+path = "IMG_20221201_141524.jpg"
+imgHeightPrefix = 720
+scaleF = 2
+widthP = 275 * scaleF
+heightP = 320 * scaleF
 
+img = cv2.imread(path)
 
-
-if webcam:success, img = cap.read()
-else: img = cv2.imread(path)
-
-imgResized = utils.resize(img, scaleResize)
+imgResized = utils.resize(img,height=imgHeightPrefix)
 width, height = imgResized.shape[:2]
 
-imgC, contours = utils.getContours(imgResized,minArea=10000,filter=4)
+imgC, contours = utils.getContours(imgResized,display=True)
 
 if len(contours) != 0:
-    biggest = contours[0][2]
-    imgWarp = utils.warpImg(imgC,biggest,widthP,heightP)
-    cv2.imshow("Paper",imgWarp)
-else:print(len(contours))
+    print("Contours found: %i" % len(contours))
+    biggestContour = contours[0][2]
+    imgWarp = utils.warpImg(imgC,biggestContour,widthP,heightP)
+    cv2.imshow("TEST",imgWarp)
+    cv2.waitKey(0)
+else:print("Contours not found!")
+    
+''' 
+    imgContours2, contours2 = utils.getContours(imgWarp,
+        maxArea=2000,
+        cannyT=[50,50],draw = True)
 
-cv2.waitKey(1)
+    if len(contours2) != 0:
+        for cnt in contours2:
+            cv2.polylines(imgContours2,[cnt[2]],True,(0,255,0),2)
+            nPoints = utils.assignPoints(cnt[2],2)
+            nW = round((utils.findDis(nPoints[0][0]//scaleF,nPoints[1][0]//scaleF)/10),1)
+            nH = round((utils.findDis(nPoints[0][0]//scaleF,nPoints[2][0]//scaleF)/10),1)
+            cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]), (nPoints[1][0][0], nPoints[1][0][1]),
+                            (255, 0, 255), 3, 8, 0, 0.05)
+            cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]), (nPoints[2][0][0], nPoints[2][0][1]),
+                            (255, 0, 255), 3, 8, 0, 0.05)
+            x, y, w, h = cnt[3]
+            cv2.putText(imgContours2, '{}cm'.format(nW), (x + 30, y - 10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5,
+                        (255, 0, 255), 2)
+            cv2.putText(imgContours2, '{}cm'.format(nH), (x - 70, y + h // 2), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5,
+                        (255, 0, 255), 2)
+            cv2.imshow('A4', imgContours2)
+ '''
+
+
+
 #NOT MEASURING OBJECTS UNTIL OBJECT WARPING IS WORKING
 """
 # looping through contours
