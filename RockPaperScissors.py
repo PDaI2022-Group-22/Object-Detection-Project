@@ -78,9 +78,12 @@ while True:
     cv2.imshow("BG",imgBG)
     # cv2.imshow("Scaled",imgScaled)
 
-
     key = cv2.waitKey(1)
     if key == ord('s'):
         startGame = True
         initialTime = time.time()
         stateResult = False
+    if key == ord('q'):
+        break
+cap.release()
+cv2.destroyAllWindows()

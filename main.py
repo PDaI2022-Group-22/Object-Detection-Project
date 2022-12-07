@@ -4,10 +4,8 @@ from kivy.uix.gridlayout import GridLayout
 #import TasteOfGame
 
 
-
 class GridLayoutExample(GridLayout):
      pass
- 
 
 
 class BoxLayoutExample(BoxLayout):
