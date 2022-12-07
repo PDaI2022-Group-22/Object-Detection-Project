@@ -2,6 +2,13 @@ import cv2
 import sys
 import numpy
 
+#constants
+measurementBGColor = "Black"
+imgHeightPrefix = 720
+scaleF = 2
+widthP = 275 * scaleF
+heightP = 320 * scaleF
+
 
 def resize(image, width = None, height = None, inter = cv2.INTER_AREA):
     # initialize the dimensions of the image to be resized and
@@ -27,7 +34,7 @@ def resize(image, width = None, height = None, inter = cv2.INTER_AREA):
     # resize the image
     resized = cv2.resize(image, dim, interpolation = inter)
     # return the resized image
-    cv2.imwrite("resized.png",resized)
+    # cv2.imwrite("resized.png",resized)
     return resized
 
 def getContours(img,cannyT=[50,180],display=False,minArea=50000,draw=False):
