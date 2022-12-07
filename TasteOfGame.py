@@ -151,5 +151,7 @@ while True:
         isEatable = True
 
     if key == ord('q'):   
-        exit()
+        break
+cap.release()
+cv2.destroyAllWindows()
 
