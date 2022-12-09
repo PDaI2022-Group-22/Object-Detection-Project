@@ -1,4 +1,3 @@
-
 from kivy.app import Widget
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label 
