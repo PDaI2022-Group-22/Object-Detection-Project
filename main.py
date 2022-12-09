@@ -16,7 +16,10 @@ class BoxLayoutExample(BoxLayout):
     def AA(self):
         exec(open('RockPaperScissors.py').read())
     def FF(self):
-        GetInfo.GetInfo.show_popup()
+        object = GetInfo.GetInfo()
+
+        
+
     pass
 
 
