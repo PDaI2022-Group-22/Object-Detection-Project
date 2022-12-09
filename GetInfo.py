@@ -5,42 +5,51 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
-
+from kivy.properties import StringProperty
 
 class G(GridLayout):
     pass
 
-class GetInfo(App):
-    def build(self):
-        return G()
+class GetInfo(Widget):
 
-    def show_popup():
+    def __init__(self, **kwargs) -> None:
+        super(GetInfo, self).__init__(**kwargs)
+        # initializing a layout
         layout = GridLayout(cols = 2, row_force_default=True, row_default_height=30)
-  
+        # layout widgets
         popupLabel1 = Label(text = "Width of the measurement base")
         popupLabel2 = Label(text = "Height of the measurement base")
         popupLabel3 = Label(text = "Check if correct IPv4 address")
-        popupInput1 = TextInput(hint_text="Width in MM")
-        popupInput2 = TextInput(hint_text="Height in MM")
-        popupInput3 = TextInput(text= "http://192.168.1.162:8080/video")
+        self.widthM = TextInput(hint_text="Width in MM", multiline=False)
+        self.heightM = TextInput(hint_text="Height in MM", multiline=False)
+        self.addressM = TextInput(text="http://192.168.1.162:8080/video", multiline=False)
         submitButton = Button(text = "Submit")
-  
+        # adding the widgets to layout
         layout.add_widget(popupLabel1)
-        layout.add_widget(popupInput1)
+        layout.add_widget(self.widthM)
         layout.add_widget(popupLabel2)
-        layout.add_widget(popupInput2)       
+        layout.add_widget(self.heightM)       
         layout.add_widget(popupLabel3)
-        layout.add_widget(popupInput3)
+        layout.add_widget(self.addressM)
         layout.add_widget(submitButton)
   
         # Instantiate the modal popup and display
         popup = Popup(title ='Object Measurement',
                       content = layout,
-                      size_hint =(None, None), size =(500, 300))  
+                      size_hint =(None, None), size =(500, 300))
         popup.open()   
   
         # Attach close button press with popup.dismiss action
-        submitButton.bind(on_press = popup.dismiss)
+        submitButton.bind(on_press = popup.dismiss, on_release=self.press)
+    
+    def submitData(instance, _ ,value):
+        print(value)
+
+    def press(self, instance):
+        widthM = self.widthM.text
+        heightM = self.heightM.text
+        addressM = self.addressM.text
+        print(f'W: {widthM}\nH: {heightM}\nAddress: {addressM}')
 
 if __name__ == '__main__':
     GetInfo().run()
