@@ -1,14 +1,10 @@
-from kivy.app import App
+
 from kivy.app import Widget
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label 
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
-from kivy.properties import StringProperty
-
-class G(GridLayout):
-    pass
 
 class GetInfo(Widget):
 
