@@ -39,17 +39,15 @@ class GetInfo(Widget):
                       size_hint =(None, None), size =(500, 300))
         popup.open()   
   
-        # Attach close button press with popup.dismiss action
-        submitButton.bind(on_press = popup.dismiss, on_release=self.press)
-    
-    def submitData(instance, _ ,value):
-        print(value)
+        # Attach close button press with popup.dismiss and showData function call
+        submitButton.bind(on_press = popup.dismiss, on_release=self.showData)
 
-    def press(self, instance):
+    def showData(self, instance):
         widthM = self.widthM.text
         heightM = self.heightM.text
         addressM = self.addressM.text
-        print(f'W: {widthM}\nH: {heightM}\nAddress: {addressM}')
+        return widthM, heightM, addressM
+        #print(f'W: {widthM}\nH: {heightM}\nAddress: {addressM}')
 
 if __name__ == '__main__':
     GetInfo().run()

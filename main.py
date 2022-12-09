@@ -16,8 +16,9 @@ class BoxLayoutExample(BoxLayout):
     def AA(self):
         exec(open('RockPaperScissors.py').read())
     def FF(self):
-        object = GetInfo.GetInfo()
-
+        result = GetInfo.GetInfo()
+        # can now get the popup setting from object with call.
+        #print(result.addressM.text)
         
 
     pass
