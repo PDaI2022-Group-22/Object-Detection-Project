@@ -3,28 +3,50 @@ BoxLayoutExample:
 
 <BoxLayoutExample>:
     orientation: "vertical"
+ 
+    canvas:
+        Color: 
+            rgba:(0.9,0.9,0.9,1) #background color for the menu
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
     Label:
         text: "Object Detection App"
+        bold: True
+        font_size: 40
         size_hint: 1, .20
         pos: "200dp", "200dp"
-        color: 0, 0, 1, 1 #values=red,green,blue,visibility
+        #kivy uses 0-1 coloring system, so to chance it to more familiar rgb code it must be divided by 255
+        color: 119/255, 125/255, 167/255, 1 #values=red,green,blue,visibility
+        outline_color: 0/255,0/255,0/255,1
+        outline_width: 2
     GridLayoutExample:
         cols: 2
-        padding: 20, 20, 20, 20 #left, top, right, bottom
+        padding: 50, 30, 50, 100 #left, top, right, bottom
+        spacing: 8
         Button:
             text: "RockPaperScissors"
             on_press: root.AA()
+           
         Button:
             text: "B"
         Button:
             text: "C"
         Button:
-            text: "Taste Of Game"
+            text: "Food Rain Game"
+            color: 255/255,255/255,255/255,1
+            outline_color: 0/255,0/255,0/255,1
+            outline_width: 2
             on_press: root.DD()
-            background_normal:'Jaakko.png'
+            background_normal:'FoodRainBG.png'
         Button:
             text: "Emotion Checker"
+            color: 255/255,255/255,255/255,1
+            outline_color: 0/255,0/255,0/255,1
+            outline_width: 2
             on_press: root.EE()
+            background_normal:'EmotionCheckerBG.png'
         Button:
             text: "F"    
 
