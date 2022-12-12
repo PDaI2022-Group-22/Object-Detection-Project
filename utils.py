@@ -1,5 +1,4 @@
 import cv2
-import sys
 import numpy
 
 #constants
@@ -10,7 +9,7 @@ widthP = 275 * scaleF
 heightP = 320 * scaleF
 
 
-def resize(image, width = None, height = None, inter = cv2.INTER_AREA):
+def resize(image, width = None, height = None, inter = cv2.INTER_AREA, save=False):
     # initialize the dimensions of the image to be resized and
     # grab the image size
     dim = None
@@ -33,8 +32,10 @@ def resize(image, width = None, height = None, inter = cv2.INTER_AREA):
         dim = (width, int(h * r))
     # resize the image
     resized = cv2.resize(image, dim, interpolation = inter)
+    # ability to save the resized image.
+    if save == True:
+        cv2.imwrite("resized.png",resized)
     # return the resized image
-    # cv2.imwrite("resized.png",resized)
     return resized
 
 def getContours(img,cannyT=[50,180],display=False,minArea=50000,draw=False):
@@ -50,7 +51,7 @@ def getContours(img,cannyT=[50,180],display=False,minArea=50000,draw=False):
         cv2.imshow("Eroded",imgEroded)
 
     contours, _ = cv2.findContours(imgDilated, cv2.RETR_EXTERNAL,
-	cv2.CHAIN_APPROX_SIMPLE)
+    cv2.CHAIN_APPROX_SIMPLE)
 
     for c in contours:
         area = cv2.contourArea(c)
@@ -102,10 +103,3 @@ def warpImg(img,biggestContour,w,h):
 def findDis(pts1,pts2):
     return ((pts2[0]-pts1[0])**2 + (pts2[1]-pts1[1])**2)**0.5
     
-def midpoint(p1, p2):
-    p1X, p1Y = p1
-    p2X, p2Y = p2
-    middleX = (p1X + p2X) / 2
-    middleY = (p1Y + p2Y) / 2
-    midpoint = middleX, middleY
-    return midpoint
