@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 import utils
   
 # Replace the below URL with your own. Make sure to add "/video" at last.
@@ -45,8 +44,5 @@ while(True):
         else:
             break 
         
-        #print("Contours found: %i" % len(contours2))
-    
-    
-        
+    #print("Contours found: %i" % len(contours2))
 cv2.destroyAllWindows()
