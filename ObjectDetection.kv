@@ -1,40 +1,63 @@
-BoxLayoutExample:
-#This file defines the layout
+<Manager>:
+    id: screen_manager
 
-<BoxLayoutExample>:
-    orientation: "vertical"
-    Label:
-        text: "Object Detection App"
-        size_hint: 1, .20
-        pos: "200dp", "200dp"
-        color: 0, 0, 1, 1 #values=red,green,blue,visibility
-    GridLayoutExample:
-        cols: 2
-        padding: 20, 20, 20, 20 #left, top, right, bottom
-        Button:
-            text: "RockPaperScissors"
-            on_press: root.AA()
-        Button:
-            text: "B"
-        Button:
-            text: "C"
-        Button:
-            text: "Taste Of Game"
-            on_press: root.DD()
-            background_normal:'Jaakko.png'
-        Button:
-            text: "Emotion Checker"
-            on_press: root.EE()
-        Button:
-            text: "F"    
+    main: main
+    people_counting: people_counting
+    people_counting_video: people_counting_video
 
-        Button:
-            text: "Test"
-            
+    MainMenu:
+        id: main
+        name: "main"
+        manager: screen_manager
 
-            
-                
-                
+    PeopleCounting:
+        id: people_counting
+        name: "people_counting"
+        manager: screen_manager
+
+    PeopleCountingVideo:
+        id: people_counting_video
+        name: "people_counting_video"
+        manager: screen_manager
+
+<MainMenu>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Object Detection App"
+            size_hint: 1, .20
+            pos: "200dp", "200dp"
+            color: 0, 0, 1, 1 #values=red,green,blue,visibility
+        GridLayout:
+            cols: 2
+            padding: 20, 20, 20, 20 #left, top, right, bottom
+            Button:
+                text: "RockPaperScissors"
+                on_press: root.AA()
+            Button:
+                text: "People Counting from Image"
+                on_press:
+                    root.manager.current = "people_counting"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "People Counting from Video"
+                on_press:
+                    root.manager.current = "people_counting_video"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Taste Of Game"
+                on_press: root.DD()
+                background_normal:'Jaakko.png'
+            Button:
+                text: "Emotion Checker"
+                on_press: root.EE()
+            Button:
+                text: "F"
+
+            Button:
+                text: "Test"
+
+
                
 
              

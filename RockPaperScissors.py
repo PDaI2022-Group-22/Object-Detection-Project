@@ -35,7 +35,7 @@ while True:
             if timer>3:
                 stateResult = True
                 timer = 0
-
+                playerMove = 0
                 if hands:
                     hand = hands[0]
                     fingers = detector.fingersUp(hand)
