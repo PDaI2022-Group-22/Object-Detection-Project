@@ -1,30 +1,50 @@
 import cv2
 import numpy as np
-from kivy.uix.widget import Widget
-from kivy.app import App
+from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen
 from kivy.graphics.texture import Texture
 from kivy.properties import ObjectProperty
 import random
+Builder.load_file("PeopleCounting.kv")
 
 
-class PeopleCounting(Widget):
+class PeopleCounting(Screen):
+
     person_count = ObjectProperty(0)
+    #label = ObjectProperty(None)
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(PeopleCounting, self).__init__(**kwargs)
         self.capture = None
         self.img_path = None
-        self.image = self.ids.image
+        self.image = None
+        self.label = None
+        self.file_selected = None
 
     def file_fire_select(self, *args):
-        file_selected = args[1][0]
-        print("arguments: ", args[1][0])
-        self.img_path = file_selected
-        self.generate_image()
-        self.show_people_count()
+        if args[1]:
+            self.file_selected = args[1][0]
+            print("args: ", args)
+            if self.file_selected.endswith((".jpg", ".png", ".jpeg")):
+                self.img_path = self.file_selected
+                self.generate_image()
+                self.show_people_count()
+            else:
+                print("File format not supported")
 
     def show_people_count(self):
-        self.label.text = "There are {} people in the image.".format(str(self.person_count))
+        print("show people count")
+        self.label.text = "People counted: {} people in the image.".format(str(self.person_count))
+
+    def on_enter(self):
+        self.label = self.manager.ids.people_counting.ids.label
+        self.image = self.manager.ids.people_counting.ids.image
+
+    def on_leave(self, *args):
+        if self.image is not None:
+            self.image.texture = None
+        self.manager.ids.people_counting.ids.filechooser.path = "/"
+        self.file_selected = None
 
     def generate_image(self, *args):
         # Load the image to detect, get width, height
@@ -59,7 +79,7 @@ class PeopleCounting(Widget):
         # input preprocessed blob into model and pass through the model
         # obtain the detection predictions by the model using forward() method
         # add a folder dataset into the project root containing .cfg and .weights files
-        yolo_model = cv2.dnn.readNetFromDarknet('dataset/yolov3.cfg', 'dataset/yolov3.weights')
+        yolo_model = cv2.dnn.readNetFromDarknet('data/dataset/yolov3.cfg', 'data/dataset/yolov3.weights')
         # get layers from the yolo network
         yolo_layer_names = yolo_model.getLayerNames()
         yolo_layer_id = yolo_model.getLayerId(yolo_layer_names[-1])
@@ -90,6 +110,7 @@ class PeopleCounting(Widget):
 
                 # take only predictions with confidence more than ?%
                 if prediction_confidence > 0.2:
+                    # predicted_class = "person"
                     if predicted_class_id == 0:
                         # obtain the bounding box co-ordinates for actual image from resized image size
                         bounding_box = object_detection[0:4] * np.array([img_width, img_height, img_width, img_height])
@@ -150,14 +171,16 @@ class PeopleCounting(Widget):
         print(self.person_count, "people in the image")
 
 
-class PeopleCountingApp(App):
-    def build(self):
-        return PeopleCounting()
-
-
-if __name__ == '__main__':
-    PeopleCountingApp().run()
-    cv2.destroyAllWindows()
+# class PeopleCountingApp(App):
+#     def build(self):
+#         return PeopleCounting()
+#
+#
+# PeopleCountingApp().run()
+#
+# if __name__ == '__main__':
+#     PeopleCountingApp().run()
+#     cv2.destroyAllWindows()
 
 
 

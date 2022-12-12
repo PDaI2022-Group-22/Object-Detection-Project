@@ -1,63 +1,78 @@
-BoxLayoutExample:
-#This file defines the layout
+<Manager>:
+    id: screen_manager
 
-<BoxLayoutExample>:
-    orientation: "vertical"
- 
-    canvas:
-        Color: 
-            rgba:(0.9,0.9,0.9,1) #background color for the menu
-        Rectangle:
-            size: self.size
-            pos: self.pos
+    main: main
+    people_counting: people_counting
+    people_counting_video: people_counting_video
 
-    Label:
-        text: "Object Detection App"
-        bold: True
-        font_size: 40
-        size_hint: 1, .20
-        pos: "200dp", "200dp"
-        #kivy uses 0-1 coloring system, so to chance it to more familiar rgb code it must be divided by 255
-        color: 119/255, 125/255, 167/255, 1 #values=red,green,blue,visibility
-        outline_color: 0/255,0/255,0/255,1
-        outline_width: 2
-    GridLayoutExample:
-        cols: 2
-        padding: 50, 30, 50, 100 #left, top, right, bottom
-        spacing: 8
-        Button:
-            text: "RockPaperScissors"
-            on_press: root.AA()
-           
-        Button:
-            text: "B"
-        Button:
-            text: "C"
-        Button:
-            text: "Food Rain Game"
-            color: 255/255,255/255,255/255,1
+    MainMenu:
+        id: main
+        name: "main"
+        manager: screen_manager
+
+    PeopleCounting:
+        id: people_counting
+        name: "people_counting"
+        manager: screen_manager
+
+    PeopleCountingVideo:
+        id: people_counting_video
+        name: "people_counting_video"
+        manager: screen_manager
+
+<MainMenu>:
+    BoxLayout:
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgba:(0.9,0.9,0.9,1) #background color for the menu
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            text: "Object Detection App"
+            bold: True
+            font_size: 40
+            size_hint: 1, .20
+            pos: "200dp", "200dp"
+            #kivy uses 0-1 coloring system, so to chance it to more familiar rgb code it must be divided by 255
+            color: 119/255, 125/255, 167/255, 1 #values=red,green,blue,visibility
             outline_color: 0/255,0/255,0/255,1
             outline_width: 2
-            on_press: root.DD()
-            background_normal:'FoodRainBG.png'
-        Button:
-            text: "Emotion Checker"
-            color: 255/255,255/255,255/255,1
-            outline_color: 0/255,0/255,0/255,1
-            outline_width: 2
-            on_press: root.EE()
-            background_normal:'EmotionCheckerBG.png'
-        Button:
-            text: "F"    
+        GridLayout:
+            cols: 2
+            padding: 50, 30, 50, 100 #left, top, right, bottom
+            spacing: 8
+            Button:
+                text: "RockPaperScissors"
+                on_press: root.AA()
+            Button:
+                text: "People Counting from Image"
+                on_press:
+                    root.manager.current = "people_counting"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "People Counting from Video"
+                on_press:
+                    root.manager.current = "people_counting_video"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Food Rain Game"
+                color: 255/255,255/255,255/255,1
+                outline_color: 0/255,0/255,0/255,1
+                outline_width: 2
+                on_press: root.DD()
+                background_normal:'FoodRainBG.png'
+            Button:
+                text: "Emotion Checker"
+                color: 255/255,255/255,255/255,1
+                outline_color: 0/255,0/255,0/255,1
+                outline_width: 2
+                on_press: root.EE()
+                background_normal:'EmotionCheckerBG.png'
+            Button:
+                text: "F"
 
-        Button:
-            text: "Test"
-            
-
-            
-                
-                
-               
-
-             
-
+            Button:
+                text: "Test"
