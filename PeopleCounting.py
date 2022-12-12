@@ -11,6 +11,7 @@ Builder.load_file("PeopleCounting.kv")
 class PeopleCounting(Screen):
 
     person_count = ObjectProperty(0)
+    #label = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(PeopleCounting, self).__init__(**kwargs)
@@ -32,10 +33,11 @@ class PeopleCounting(Screen):
                 print("File format not supported")
 
     def show_people_count(self):
+        print("show people count")
         self.label.text = "People counted: {} people in the image.".format(str(self.person_count))
 
     def on_enter(self):
-        self.label = self.manager.ids.people_counting_video.ids.label
+        self.label = self.manager.ids.people_counting.ids.label
         self.image = self.manager.ids.people_counting.ids.image
 
     def on_leave(self, *args):
