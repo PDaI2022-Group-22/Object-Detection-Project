@@ -19,6 +19,12 @@ eatables = []
 for object in listEatable:
     eatables.append(cv2.imread(f'{folderEatable}/{object}', cv2.IMREAD_UNCHANGED))
 
+folderLightning = 'Objects\\lightning'
+listLightning = os.listdir(folderLightning)
+Lightning = []
+for object in listLightning:
+    Lightning.append(cv2.imread(f'{folderLightning}/{object}', cv2.IMREAD_UNCHANGED))
+
 folderNonEatable = 'Objects\\noneatable'
 listNonEatable = os.listdir(folderNonEatable)
 nonEatables = []
@@ -39,27 +45,36 @@ global isCritter
 global isEatable
 isCritter= False
 isEatable = True
+isLightning = False
 gameOver = False
 
 
 def resetObject():
     global isEatable
     global isCritter
+    global isLightning
     pos[0] = random.randint(100, 1180)
     pos[1] = 0
-    randNo = random.randint(0, 2)  # ratio of eatables/ non-eatables
+    randNo = random.randint(0, 4)  # ratio of eatables/ non-eatables
     if randNo == 0:
         currentObject = nonEatables[random.randint(0, 3)]
         isEatable = False
         isCritter = False
-    elif randNo == 1:
+        isLightning = False
+    elif  randNo == 1  and count>=10:
         currentObject = Critters[random.randint(0, 3)]
         isEatable = False
         isCritter = True
+        isLightning = False
+    elif randNo == 2  and count>=5:
+        currentObject = Lightning[random.randint(0, 0)]
+        isEatable = False
+        isLightning = True
     else:
         currentObject = eatables[random.randint(0, 3)]
         isEatable = True
         isCritter = False
+        isLightning = False
 
     return currentObject
 
@@ -72,17 +87,15 @@ while True:
         img, faces = detector.findFaceMesh(img, draw=False)
 
         img = cvzone.overlayPNG(img, currentObject, pos)
-        if isCritter==True and count>=0:
+        if isCritter==True:
             if cx>=pos[0]:
-              pos[1] += (speed)
+              pos[1] += (speed + count)
               pos[0] += (5)
             else:
               pos[1] += (speed)
-              pos[0] -= (5)
-            
-        if isCritter==False:
-            pos[1] += (speed + count)
-
+              pos[0] -= (5 + count)
+        if isLightning==True:
+            pos[1] += (count + 10)
         else:
             pos[1] += (speed + count)   
 
@@ -151,5 +164,7 @@ while True:
         isEatable = True
 
     if key == ord('q'):   
-        exit()
+        break
+cap.release()
+cv2.destroyAllWindows()
 

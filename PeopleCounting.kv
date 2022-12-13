@@ -1,14 +1,23 @@
 <PeopleCounting>:
-    label: label
-
+    on_enter: ()
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height
         padding: 10
         spacing: 10
-        Label:
-            text: "Choose an image file"
+        BoxLayout:
+            orientation: "horizontal"
             size_hint: 1, .1
+            Button:
+                text: "Back"
+                size_hint: .2, 1
+                on_press:
+                    root.manager.current = "main"
+                    root.manager.transition.direction = "right"
+                    root.on_leave: ()
+            Label:
+                text: "Choose an image file"
+                size_hint: 2, .1
         Image:
             id: image
             size_hint: .7, 2
@@ -23,4 +32,5 @@
         FileChooserListView:
             size_hint: 1, 1
             id: filechooser
+            path: "/"
             on_selection: root.file_fire_select(*args)
