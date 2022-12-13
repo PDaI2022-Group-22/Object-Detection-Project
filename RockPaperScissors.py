@@ -83,6 +83,7 @@ while True:
         startGame = True
         initialTime = time.time()
         stateResult = False
+
     if key == ord('q'):
         break
 cap.release()

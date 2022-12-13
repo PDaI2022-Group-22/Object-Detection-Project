@@ -10,12 +10,15 @@ import PeopleCountingVideo
 
 
 class MainMenu(Screen):
+    def AA(self):
+        exec(open('RockPaperScissors.py').read())
     def DD(self):
         exec(open('TasteOfGame.py').read())
     def EE(self):
         exec(open('EmotionCheck.py').read())
-    def AA(self):
-        exec(open('RockPaperScissors.py').read())
+    def FF(self):
+        exec(open('SnakeGame.py').read())
+
 
 
 class Manager(ScreenManager):
