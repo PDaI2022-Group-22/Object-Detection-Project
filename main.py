@@ -1,5 +1,8 @@
 
-
+from RockPaperScissors import Scissor
+from EmotionCheck import FaceCheck
+from TasteOfGame import TasteRain
+from SnakeGame import Snake
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
@@ -11,15 +14,13 @@ import PeopleCountingVideo
 
 class MainMenu(Screen):
     def AA(self):
-        exec(open('RockPaperScissors.py').read())
+       Scissor()
     def DD(self):
-        exec(open('TasteOfGame.py').read())
+        TasteRain()
     def EE(self):
-        exec(open('EmotionCheck.py').read())
+        FaceCheck()
     def FF(self):
-        exec(open('SnakeGame.py').read())
-
-
+        Snake()
 
 class Manager(ScreenManager):
     main = ObjectProperty(None)

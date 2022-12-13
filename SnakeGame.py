@@ -101,24 +101,26 @@ class SnakeGameClass:
         return imgMain
 
 
-game = SnakeGameClass("Donut.png")
+def Snake():
+    game = SnakeGameClass("Donut.png")
 
-while True:
-    success, img = cap.read()
-    img = cv2.flip(img, 1)
-    hands, img = detector.findHands(img, flipType=False)
+    while True:
+        success, img = cap.read()
+        img = cv2.flip(img, 1)
+        hands, img = detector.findHands(img, flipType=False)
 
-    if hands:
-        lmList = hands[0]['lmList']
-        pointIndex = lmList[8][0:2]
-        img = game.update(img, pointIndex)
-    cv2.imshow("Image", img)
-    key = cv2.waitKey(1)
-    if key == ord('r'):
-        game.gameOver = False
-        game.score = 0
+        if hands:
+            lmList = hands[0]['lmList']
+            pointIndex = lmList[8][0:2]
+            img = game.update(img, pointIndex)
+        cv2.imshow("Image", img)
+        key = cv2.waitKey(1)
+        if key == ord('r'):
+            game.gameOver = False
+            game.score = 0
 
-    if key == ord('q'):
-        break
-cap.release()
-cv2.destroyAllWindows()
+        if key == ord('q'):
+            break
+    cap.release()
+    cv2.destroyAllWindows()
+
