@@ -12,11 +12,13 @@ class GridLayoutExample(GridLayout):
 
 class BoxLayoutExample(BoxLayout):
     def AA(self):
-        import RockPaperScissors
+        exec(open('RockPaperScissors.py').read())
+    def BB(self):
+        exec(open('SnakeGame.py').read())
     def DD(self):
-        import TasteOfGame
+        exec(open('TasteOfGame.py').read())
     def EE(self):
-        import EmotionCheck
+        exec(open('EmotionCheck.py').read())
     pass
 
 
