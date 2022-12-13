@@ -1,7 +1,7 @@
 from RockPaperScissors import Scissor
 from EmotionCheck import FaceCheck
 from TasteOfGame import TasteRain
-from SnakeGame import AAAAAA
+from SnakeGame import Snake
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
@@ -19,7 +19,7 @@ class MainMenu(Screen):
     def EE(self):
         FaceCheck()
     def FF(self):
-        AAAAAA()
+        Snake()
 
 
 

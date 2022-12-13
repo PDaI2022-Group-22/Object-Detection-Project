@@ -100,7 +100,7 @@ class SnakeGameClass:
 
         return imgMain
 
-def AAAAAA():
+def Snake():
     game = SnakeGameClass("Donut.png")
 
     while True:
