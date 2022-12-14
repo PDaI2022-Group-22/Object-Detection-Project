@@ -7,3 +7,7 @@ easydict
 matplotlib
 pillow
 scipy
+mediapipe
+deepface
+cvzone
+kivy

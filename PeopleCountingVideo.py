@@ -75,7 +75,7 @@ class PeopleCountingVideo(Screen):
         max_cosine_distance = 0.4
         nn_budget = None
         nms_max_overlap = 1.0
-        weights = "./checkpoints/yolov4-416"
+        weights = "checkpoints/yolov4-416"
         iou = 0.45
         score = 0.50
         info = True
