@@ -3,6 +3,7 @@ from RockPaperScissors import Scissor
 from EmotionCheck import FaceCheck
 from TasteOfGame import TasteRain
 from SnakeGame import Snake
+from ObjectMeasurement import ObjectMeasurement
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
@@ -10,6 +11,8 @@ from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 import PeopleCounting
 import PeopleCountingVideo
+
+url = "http://192.168.1.162:8080/video"
 
 
 class MainMenu(Screen):
@@ -21,6 +24,10 @@ class MainMenu(Screen):
         FaceCheck()
     def FF(self):
         Snake()
+    def GG(self):
+        ObjectMeasurement(url,260,320)
+
+        
 
 class Manager(ScreenManager):
     main = ObjectProperty(None)
