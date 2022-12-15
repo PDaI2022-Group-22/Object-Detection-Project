@@ -7,7 +7,6 @@ from ObjectMeasurement import ObjectMeasurement
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
-#import TasteOfGame
 from kivy.uix.screenmanager import ScreenManager, Screen
 import PeopleCounting
 import PeopleCountingVideo

@@ -47,14 +47,26 @@
             spacing: 8
             Button:
                 text: "Rock Paper Scissors"
+                color: 255/255,255/255,255/255,1
+                outline_color: 0/255,0/255,0/255,1
+                outline_width: 2
+                background_normal:'BTNBackGrounds\\RockPaperScisorsBG.png'
                 on_press: root.AA()
             Button:
                 text: "People Counting from Image"
+                color: 255/255,255/255,255/255,1
+                outline_color: 0/255,0/255,0/255,1
+                outline_width: 2
+                background_normal:'BTNBackGrounds\\PeopleCountingBG.png'
                 on_press:
                     root.manager.current = "people_counting"
                     root.manager.transition.direction = "left"
             Button:
                 text: "People Counting from Video"
+                color: 255/255,255/255,255/255,1
+                outline_color: 0/255,0/255,0/255,1
+                outline_width: 2
+                background_normal:'BTNBackGrounds\\PeopleCountingBG.png'
                 on_press:
                     root.manager.current = "people_counting_video"
                     root.manager.transition.direction = "left"
@@ -64,17 +76,25 @@
                 outline_color: 0/255,0/255,0/255,1
                 outline_width: 2
                 on_press: root.DD()
-                background_normal:'FoodRainBG.png'
+                background_normal:'BTNBackGrounds\\FoodRainBG.png'
             Button:
                 text: "Emotion Checker"
                 color: 255/255,255/255,255/255,1
                 outline_color: 0/255,0/255,0/255,1
                 outline_width: 2
                 on_press: root.EE()
-                background_normal:'EmotionCheckerBG.png'
+                background_normal:'BTNBackGrounds\\EmotionCheckerBG.png'
             Button:
                 text: "Snake"
+                color: 255/255,255/255,255/255,1
+                outline_color: 0/255,0/255,0/255,1
+                outline_width: 2
+                background_normal:'BTNBackGrounds\\SnakeGameBG.png'
                 on_press: root.FF()
             Button:
+                text: "Measuring App"
+                color: 255/255,255/255,255/255,1
+                outline_color: 0/255,0/255,0/255,1
+                outline_width: 2
+                background_normal:'BTNBackGrounds\\MeasuringBG.png'
                 on_press: root.GG()
-                background_normal:'measurement.png'
