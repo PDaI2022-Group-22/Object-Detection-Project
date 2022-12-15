@@ -25,7 +25,7 @@ class MainMenu(Screen):
     def FF(self):
         Snake()
     def GG(self):
-        ObjectMeasurement(url,260,320)
+        ObjectMeasurement(url,210,297)
 
         
 
