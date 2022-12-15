@@ -90,12 +90,12 @@ def TasteRain():
             if isCritter==True:
                 if cx>=pos[0]:
                     pos[1] += (speed + count)
-                    pos[0] += (5)
+                    pos[0] += (5 + count)
                 else:
-                    pos[1] += (speed)
+                    pos[1] += (speed + count)
                     pos[0] -= (5 + count)
             if isLightning==True:
-                pos[1] += (count + 10)
+                pos[1] += (count + count)
             else:
                 pos[1] += (speed + count)   
 
