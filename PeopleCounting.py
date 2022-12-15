@@ -11,7 +11,7 @@ Builder.load_file("PeopleCounting.kv")
 class PeopleCounting(Screen):
 
     person_count = ObjectProperty(0)
-    #label = ObjectProperty(None)
+    image_size = ObjectProperty([1, 0.2])
 
     def __init__(self, **kwargs):
         super(PeopleCounting, self).__init__(**kwargs)
@@ -24,7 +24,7 @@ class PeopleCounting(Screen):
     def file_fire_select(self, *args):
         if args[1]:
             self.file_selected = args[1][0]
-            print("args: ", args)
+            print("path: ", args[1][0])
             if self.file_selected.endswith((".jpg", ".png", ".jpeg")):
                 self.img_path = self.file_selected
                 self.generate_image()
@@ -43,10 +43,14 @@ class PeopleCounting(Screen):
     def on_leave(self, *args):
         if self.image is not None:
             self.image.texture = None
+            self.image.color = 1, 1, 1, 0
+        self.label.text = "Choose an image file"
         self.manager.ids.people_counting.ids.filechooser.path = "/"
         self.file_selected = None
+        self.image_size = [1, 0.2]
 
     def generate_image(self, *args):
+        self.image_size = [1, 2]
         # Load the image to detect, get width, height
         # resize to match input size, convert to blob(binary large object) to pass into model
         img = cv2.imread(self.img_path)
@@ -79,7 +83,7 @@ class PeopleCounting(Screen):
         # input preprocessed blob into model and pass through the model
         # obtain the detection predictions by the model using forward() method
         # add a folder dataset into the project root containing .cfg and .weights files
-        yolo_model = cv2.dnn.readNetFromDarknet('data/dataset/yolov3.cfg', 'data/dataset/yolov3.weights')
+        yolo_model = cv2.dnn.readNetFromDarknet('dataset/yolov3.cfg', 'dataset/yolov3.weights')
         # get layers from the yolo network
         yolo_layer_names = yolo_model.getLayerNames()
         yolo_layer_id = yolo_model.getLayerId(yolo_layer_names[-1])
@@ -167,6 +171,7 @@ class PeopleCounting(Screen):
             # buffer = bytes(buffer)
             texture = Texture.create(size=(img.shape[1], img.shape[0]), colorfmt='bgr')
             texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
+            self.image.color = 1, 1, 1, 1
             self.image.texture = texture
         print(self.person_count, "people in the image")
 
