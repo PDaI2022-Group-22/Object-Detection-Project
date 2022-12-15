@@ -1,9 +1,3 @@
----
-noteId: "558c2aa07bc011ed84f1390030918ab3"
-tags: []
-
----
-
 
 # Computer vision & Object detection App collection
 
@@ -32,6 +26,14 @@ INSERT TEXT HERE
 INSERT TEXT HERE
 ## Object Measurement
 
+#### Usage:
+Current state is more of a **proof-of-concept**
+
+Ability to measure width and height properties of **2D** objects placed on the measurement surface using the IP Webcam application to provide the video stream.
+
+Uses image warping with the dimensions of the measurement base to retain the dimensions regardless of the angle that the measurement base is filmed at. 
+
+
 #### Requirements:
 
 #### IP Webcam:
@@ -45,6 +47,10 @@ Format: "http://192.168.1.162:8080/video".
 Important to have the "/video" at the end of the ip:port.
 
 #### Measurement base:
+**Current Measurement base preset is A4 paper with dimensions of
+210mm X 297mm (in W x H format)**
+
 Measurement base is a flat surface with the dimensions of the surface known.
 Format is Width and Height
+
 
