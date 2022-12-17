@@ -164,7 +164,7 @@ class PeopleCounting(Screen):
             self.person_count += 1
 
             # draw rectangle and text in the image
-            cv2.rectangle(img, (start_x_pt, start_y_pt), (end_x_pt, end_y_pt), box_color, 1)
+            cv2.rectangle(img, (start_x_pt, start_y_pt), (end_x_pt, end_y_pt), box_color, 2)
             cv2.putText(img, predicted_class_label, (start_x_pt, start_y_pt-5), cv2.FONT_HERSHEY_SIMPLEX, 1, box_color)
             # convert image to texture
             buffer = cv2.flip(img, 0).tobytes()

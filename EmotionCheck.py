@@ -14,7 +14,7 @@ def FaceCheck():
 
     while True:
             ret,frame = cap.read()
-            result = DeepFace.analyze(frame, actions= ['emotion'])
+            result = DeepFace.analyze(frame, enforce_detection=False, actions= ['emotion'])
 
             gray= cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces= faceCascade.detectMultiScale(gray,1.1,4)
