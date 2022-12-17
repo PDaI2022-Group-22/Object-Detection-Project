@@ -23,7 +23,7 @@ people. The output video is displayed in a separate window.
 
 ### Possible Sources of Error In Counting People
 Errors in detection and tracking can be caused by such things as poor image quality, overlapping of people in the image and
-occlusion of a person from view by other people or objects, which can prevent detection with sufficient confidence or disrupt the tracking 
+occlusion of a person from view by other people or objects, which can prevent prediction with sufficient confidence or disrupt the tracking 
 and cause the person to be given a new id thus counting the same person more than once.
 
 ### Requirements to run People Counting
