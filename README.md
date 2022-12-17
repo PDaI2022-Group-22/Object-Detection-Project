@@ -3,7 +3,7 @@
 
 This project is a collection of different computer vision and object detection applications merged into a one larger application.
 The user interface of the application is done using [Kivy](https://kivy.org/), which is an open-source framework for making cross-platform Python 
-applications.
+applications. The project dependencies are listed in the requirements.txt file. To install them run the command: pip install -r requirements.txt.
 
 
 ## People Counting from Image and Video
