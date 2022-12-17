@@ -64,7 +64,7 @@ class PeopleCountingVideo(Screen):
 
     def on_leave(self, *args):
         if self.label is not None:
-            self.label.text = ""
+            self.label.text = "Choose a video file"
         # self.image.texture = None
         self.manager.ids.people_counting_video.ids.filechooser.path = "/"
         self.file_selected = None
@@ -160,7 +160,7 @@ class PeopleCountingVideo(Screen):
             scores = scores[0:int(num_objects)]
             classes = classes.numpy()[0]
             classes = classes[0:int(num_objects)]
-            print("num_objects: {}".format(num_objects))
+            # print("num_objects: {}".format(num_objects))
 
             # format bounding boxes from normalized ymin, xmin, ymax, xmax ---> xmin, ymin, width, height
             original_h, original_w, _ = frame.shape
@@ -241,19 +241,19 @@ class PeopleCountingVideo(Screen):
                             (255, 255, 255), 2)
 
                 # if enable info flag then print details about each track
-                if info:
-                    print("Tracker ID: {}, Class: {},  BBox Coords (xmin, ymin, xmax, ymax): {}".format(
-                        str(track.track_id),
-                        class_name, (
-                            int(bbox[0]),
-                            int(bbox[1]),
-                            int(bbox[2]),
-                            int(bbox[3]))))
+                # if info:
+                #     print("Tracker ID: {}, Class: {},  BBox Coords (xmin, ymin, xmax, ymax): {}".format(
+                #         str(track.track_id),
+                #         class_name, (
+                #             int(bbox[0]),
+                #             int(bbox[1]),
+                #             int(bbox[2]),
+                #             int(bbox[3]))))
 
-            print("List of tracks: {}".format(confirmed_tracks))
+            # print("List of tracks: {}".format(confirmed_tracks))
             # calculate frames per second of running detections
             fps = 1.0 / (time.time() - start_time)
-            print("FPS: %.2f" % fps)
+            #print("FPS: %.2f" % fps)
             result = np.asarray(frame)
             result = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
