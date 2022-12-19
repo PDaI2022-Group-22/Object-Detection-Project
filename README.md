@@ -40,10 +40,11 @@ INSERT TEXT HERE
 
 INSERT TEXT HERE
 ## Taste of Game
+In this game you try to eat the fruits that drop down from the top of the screen netting you points. All non fruits causes game over and game becomes progressivly harder the more points you have. Game restarts by pressing 'r' and quits by pressing 'q' 
 
 INSERT TEXT HERE
 ## Emotion Checker
-
+Emotion checker uses deepface library to recognize users most dominant expression or at least one that app recognizes as most likely to be correct emotion. App works better if you are clean shaven and with light illuminating users face. Quiting the app works by pressing 'q'
 INSERT TEXT HERE
 ## Object Measurement
 
