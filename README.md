@@ -33,18 +33,30 @@ and the checkpoints folder contains a TensorFlow model generated from the YoloV4
 
 Source for the DeepSort algorithm: (https://github.com/theAIGuysCode/yolov4-deepsort).
 
+
 ## Snake Game
+After starting the game from the main menu a new window opens showing the live view of the (laptop) webcam - so, ususally the person starting the game. 
+As soon as the person raises the hand and the camera detects it the game starts. The indexfinger becomes the head of the snake 
+and whatever direction you move the hand to, the tail of the snake follows your index finger - its head. To score points in the game, 
+randomly appearing donuts neads to be "eaten" (collected), which at the same time also increases the length of the snake. 
+However, the game is over as soon as you lead the snake into its own tail. It then can be restarted by pressing "R" on the keyboard 
+or, if wished, "Q" to quit the game and get back to the main menu. 
 
-INSERT TEXT HERE
+
 ## Rock Paper Scissors
+After starting the game from the main menu a new window opens showing a user interface with both the live view of the webcam and a field for the computer move.
+As soon as the players hand gets recognized by the computer, the game can be started by pressing "S" on the keyboard. 
+This will start a counter from 0 to 3, where the move shown on "3" is "logged in" as the final player move. At the same time, the computer randomly chooses a move. 
+Both moves are then being compared and the score of the winner gets increased by 1. You can play as many rounds as you want, 
+just press "S" on the keyboard to start a new round or, if wished, "Q" to quit the game and get back to the main menu.
 
-INSERT TEXT HERE
+
 ## Taste of Game
 In this game you try to eat the fruits that drop down from the top of the screen netting you points. All non fruits causes game over and game becomes progressivly harder the more points you have. Game restarts by pressing 'r' and quits by pressing 'q' 
 
 INSERT TEXT HERE
 ## Emotion Checker
-Emotion checker uses deepface library to recognize users most dominant expression or at least one that app recognizes as most likely to be correct emotion. App works better if you are clean shaven and with light illuminating users face. Quiting the app works by pressing 'q'
+Emotion checker uses deepface library to recognize users most dominant expression or at least one that app recognizes as most likely to be correct emotion. App works better if you are clean shaven and with light illuminating users face. Quitting the app works by pressing 'q'
 INSERT TEXT HERE
 ## Object Measurement
 
